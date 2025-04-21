@@ -1,0 +1,96 @@
+<div class="flex h-screen bg-gray-100">
+  <!-- Sidebar -->
+  <nav class="w-60 bg-gray-800 text-white p-4 flex flex-col justify-between">
+    <div>
+      <h2 class="text-2xl font-bold text-center mb-10">Dashboard</h2>
+      <div class="space-y-4">
+        <button
+          (click)="activeTab = 'candidates'"
+          [ngClass]="{
+            'bg-gray-700': activeTab === 'candidates',
+            'hover:bg-gray-700': activeTab !== 'candidates'
+          }"
+          class="w-full text-left p-3 rounded-md transition"
+        >
+          Candidates
+        </button>
+        <button
+          (click)="activeTab = 'interviewers'"
+          [ngClass]="{
+            'bg-gray-700': activeTab === 'interviewers',
+            'hover:bg-gray-700': activeTab !== 'interviewers'
+          }"
+          class="w-full text-left p-3 rounded-md transition"
+        >
+          Interviewers
+        </button>
+        <button
+          (click)="activeTab = 'panels'"
+          [ngClass]="{
+            'bg-gray-700': activeTab === 'panels',
+            'hover:bg-gray-700': activeTab !== 'panels'
+          }"
+          class="w-full text-left p-3 rounded-md transition"
+        >
+          Panels
+        </button>
+        <button
+          (click)="activeTab = 'schedules'"
+          [ngClass]="{
+            'bg-gray-700': activeTab === 'schedules',
+            'hover:bg-gray-700': activeTab !== 'schedules'
+          }"
+          class="w-full text-left p-3 rounded-md transition"
+        >
+          Schedules
+        </button>
+        <button
+          (click)="activeTab = 'feedbacks'"
+          [ngClass]="{
+            'bg-gray-700': activeTab === 'feedbacks',
+            'hover:bg-gray-700': activeTab !== 'feedbacks'
+          }"
+          class="w-full text-left p-3 rounded-md transition"
+        >
+          Feedback
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-10 overflow-auto">
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h1 class="text-3xl font-bold text-gray-800 mb-6">
+        Welcome to the Interview Panel Management System
+      </h1>
+
+      <!-- Dynamic Content -->
+<div *ngIf="activeTab === 'candidates'">
+  <app-candidate></app-candidate>
+</div>
+
+<div *ngIf="activeTab === 'interviewers'">
+  <app-interviewer></app-interviewer>
+</div>
+
+<div *ngIf="activeTab === 'panels'">
+  <app-interview-panel></app-interview-panel>
+</div>
+
+<div *ngIf="activeTab === 'schedules'">
+  <app-interview-schedule></app-interview-schedule>
+</div>
+
+<div *ngIf="activeTab === 'feedbacks'">
+  <app-interview-feedback></app-interview-feedback>
+</div>
+
+
+      <!-- Default fallback -->
+      <div *ngIf="!activeTab">
+        <p class="text-gray-600">Please select an option from the sidebar to get started.</p>
+      </div>
+    </div>
+  </div>
+</div>

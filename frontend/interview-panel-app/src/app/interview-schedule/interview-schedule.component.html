@@ -1,0 +1,55 @@
+<h2>Interview Scheduling</h2>
+
+<form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-group">
+    <label for="candidate">Candidate:</label>
+    <select id="candidate" formControlName="candidate">
+      <option *ngFor="let c of candidates" [value]="c._id">{{ c.firstName }} {{ c.lastName }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="panel">Panel:</label>
+    <select id="panel" formControlName="panel">
+      <option *ngFor="let p of panels" [value]="p._id">{{ p.panelName }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="scheduledDate">Scheduled Date:</label>
+    <input type="date" id="scheduledDate" formControlName="scheduledDate" />
+  </div>
+
+  <div class="form-group">
+    <label for="startTime">Start Time:</label>
+    <input type="time" id="startTime" formControlName="startTime" />
+  </div>
+
+  <div class="form-group">
+    <label for="endTime">End Time:</label>
+    <input type="time" id="endTime" formControlName="endTime" />
+  </div>
+
+  <div class="form-buttons">
+    <button type="submit" class="submit-btn">
+      {{ editingId ? 'Update' : 'Add' }} Schedule
+    </button>
+    <button type="button" (click)="onCancel()" *ngIf="editingId" class="cancel-btn">Cancel</button>
+  </div>
+</form>
+
+<hr />
+
+<ul class="schedule-list">
+  <li *ngFor="let s of schedules" class="schedule-item">
+    <strong>Candidate:</strong> {{ getCandidateName(s.candidate) }} |
+    <strong>Panel:</strong> {{ getPanelName(s.panel) }} |
+    <strong>Date:</strong> {{ s.scheduledDate | date:'shortDate' }} |
+    <strong>Time:</strong> {{ getFormattedTime(s.startTime) }} - {{ getFormattedTime(s.endTime) }}
+
+    <div class="actions">
+      <button class="edit-btn" (click)="onEdit(s)">Edit</button>
+      <button class="delete-btn" (click)="onDelete(s._id!)">Delete</button>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,55 @@
+<h2>Interview Panel Management</h2>
+
+<form [formGroup]="panelForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-group">
+    <label for="panelName">Panel Name:</label>
+    <input id="panelName" formControlName="panelName" placeholder="Panel Name">
+  </div>
+
+  <div class="form-group">
+    <label for="interviewType">Interview Type:</label>
+    <select id="interviewType" formControlName="interviewType">
+      <option value="Technical">Technical</option>
+      <option value="HR">HR</option>
+      <option value="Managerial">Managerial</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Select Interviewers:</label>
+    <div *ngFor="let interviewer of interviewers">
+      <input
+        type="checkbox"
+        [value]="interviewer._id"
+        (change)="onCheck($event)"
+        [checked]="panelForm.value.interviewers.includes(interviewer._id)"
+      />
+      {{ interviewer.firstName }} {{ interviewer.lastName }}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="scheduledDateTime">Scheduled Date & Time:</label>
+    <input type="datetime-local" id="scheduledDateTime" formControlName="scheduledDateTime">
+  </div>
+
+  <div class="form-buttons">
+    <button type="submit" class="submit-btn">
+      {{ editingId ? 'Update' : 'Add' }} Panel
+    </button>
+    <button type="button" (click)="onCancel()" *ngIf="editingId" class="cancel-btn">Cancel</button>
+  </div>
+</form>
+
+<hr>
+
+<ul class="panel-list">
+  <li *ngFor="let p of panels" class="panel-item">
+    <strong>{{ p.panelName }}</strong> ({{ p.interviewType }})<br>
+    Interviewers: {{ p.interviewers.length }} | Scheduled: {{ p.scheduledDateTime | date:'short' }}
+    <div class="actions">
+      <button class="edit-btn" (click)="onEdit(p)">Edit</button>
+      <button class="delete-btn" (click)="onDelete(p._id!)">Delete</button>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,72 @@
+<h2>Interview Feedback</h2>
+
+<form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-group">
+    <label for="candidate">Candidate:</label>
+    <select id="candidate" formControlName="candidate">
+      <option *ngFor="let c of candidates" [value]="c._id">{{ c.firstName }} {{ c.lastName }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="interviewer">Interviewer:</label>
+    <select id="interviewer" formControlName="interviewer">
+      <option *ngFor="let i of interviewers" [value]="i._id">{{ i.firstName }} {{ i.lastName }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="panel">Panel:</label>
+    <select id="panel" formControlName="panel">
+      <option *ngFor="let p of panels" [value]="p._id">{{ p.panelName }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="rating">Rating:</label>
+    <input type="number" id="rating" formControlName="rating" min="1" max="10" />
+  </div>
+
+  <div class="form-group">
+    <label for="comments">Comments:</label>
+    <textarea id="comments" formControlName="comments" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="recommendation">Recommendation:</label>
+    <select id="recommendation" formControlName="recommendation">
+      <option value="Hire">Hire</option>
+      <option value="Hold">Hold</option>
+      <option value="Reject">Reject</option>
+    </select>
+  </div>
+
+  <div class="form-buttons">
+    <button type="submit" class="submit-btn">{{ editingId ? 'Update' : 'Submit' }} Feedback</button>
+    <button type="button" class="cancel-btn" (click)="onCancel()" *ngIf="editingId">Cancel</button>
+  </div>
+</form>
+
+<hr />
+
+<ul class="feedback-list" *ngIf="feedbacks.length">
+  <li *ngFor="let f of feedbacks" class="feedback-item">
+    <p>
+      <strong>Candidate:</strong> {{ f.candidate.firstName }} {{ f.candidate.lastName }} |
+      <strong>Interviewer:</strong> {{ f.interviewer.firstName }} {{ f.interviewer.lastName }} |
+      <strong>Panel:</strong> {{ f.panel.panelName }} |
+      <strong>Rating:</strong> {{ f.rating }} |
+      <strong>Recommendation:</strong> {{ f.recommendation }}
+    </p>
+    <p><em>{{ f.comments }}</em></p>
+    <div class="actions">
+      <button class="edit-btn" (click)="onEdit(f)">Edit</button>
+      <button class="delete-btn" (click)="onDelete(f._id!)">Delete</button>
+    </div>
+  </li>
+</ul>
+
+
+
+
+
