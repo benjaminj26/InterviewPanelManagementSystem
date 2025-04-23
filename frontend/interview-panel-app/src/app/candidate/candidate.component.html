@@ -23,14 +23,23 @@
   </div>
 
   <div class="form-group">
+    <label for="jobPost">Select Job:</label>
+    <select id="jobPost" formControlName="jobPost">
+      <option *ngFor="let job of jobs" [value]="job._id">
+        {{ job.position }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
     <label for="resumeLink">Resume Link:</label>
     <input id="resumeLink" formControlName="resumeLink" placeholder="Resume Link">
   </div>
 
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label for="appliedPosition">Applied Position:</label>
     <input id="appliedPosition" formControlName="appliedPosition" placeholder="Applied Position">
-  </div>
+  </div> -->
 
   <div class="form-group">
     <label for="experienceYears">Experience Years:</label>
@@ -60,7 +69,7 @@
 
 <ul class="item-list">
   <li *ngFor="let c of candidates" class="item-entry">
-    <span>{{ c.firstName }} {{ c.lastName }} - {{ c.email }} ({{ c.appliedPosition }})</span>
+    <span>{{ c.firstName }} {{ c.lastName }} - {{ c.email }} ({{ c.jobPost.position }})</span>
     <div class="actions">
       <button class="edit-btn" (click)="onEdit(c)">Edit</button>
       <button class="delete-btn" (click)="onDelete(c._id!)">Delete</button>

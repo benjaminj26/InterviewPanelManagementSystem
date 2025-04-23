@@ -1,6 +1,7 @@
 const InterviewSchedule = require('../models/InterviewSchedule');
 const Candidate = require('../models/candidate');
 const Panel = require('../models/InterviewPanel');
+const Interviewer = require('../models/Interviewer');
 
 // Create a new interview schedule
 exports.createSchedule = async (req, res) => {
@@ -122,3 +123,11 @@ exports.deleteSchedule = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
+exports.autoSchedule = async (req, res) => {
+  try {
+    
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+}

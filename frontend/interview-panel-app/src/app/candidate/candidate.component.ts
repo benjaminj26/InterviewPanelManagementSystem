@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InterviewPanelApiService } from '../services/interview-panel-api.service';
 import { Candidate } from '../models/candidate.model';
+import { CandidateService } from '../services/candidate.service';
+import { Job } from '../models/job.model';
 
 @Component({
   selector: 'app-candidate',
@@ -14,10 +16,12 @@ import { Candidate } from '../models/candidate.model';
 export class CandidateComponent implements OnInit {
   interviewPanelApiService = inject(InterviewPanelApiService);
   fb = inject(FormBuilder);
+  candidateService = inject(CandidateService);
 
   candidates: Candidate[] = [];
   candidateForm!: FormGroup;
   editingId: string | null = null;
+  jobs: Job[] = [];
 
   ngOnInit(): void {
     this.candidateForm = this.fb.group({
@@ -25,6 +29,7 @@ export class CandidateComponent implements OnInit {
       lastName: [''],
       email: [''],
       phone: [''],
+      jobPost: [''],
       resumeLink: [''],
       appliedPosition: [''],
       experienceYears: [0],
@@ -32,6 +37,14 @@ export class CandidateComponent implements OnInit {
     });
 
     this.getCandidates();
+    this.loadJobs();
+  }
+
+  loadJobs(): void {
+    this.candidateService.getJobs().subscribe({
+      next: (data) => this.jobs = data,
+      error: (err) => console.error('Failed to load jobs ', err)
+    });
   }
 
   // Get all candidates from the backend

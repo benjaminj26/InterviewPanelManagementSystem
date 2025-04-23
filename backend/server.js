@@ -6,6 +6,7 @@ const panelRoutes = require('./routes/panel.routes');
 const interviewerRoutes = require('./routes/interviewer.routes');
 const interviewScheduleRoutes = require('./routes/interviewSchedule.routes');
 const feedbackRoutes = require('./routes/interviewFeedback.routes');
+const jobRoutes = require('./routes/job.routes');
 
 const app=express()
 
@@ -18,6 +19,7 @@ app.use('/api/panels', panelRoutes);
 app.use('/api/interviewers', interviewerRoutes);
 app.use('/api/schedules', interviewScheduleRoutes);
 app.use('/api/feedbacks', feedbackRoutes);
+app.use('/api/jobs', jobRoutes);
 
 
 app.get('/', (req, res) => {
