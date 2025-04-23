@@ -1,3 +1,5 @@
+import { Job } from "./job.model";
+
 export interface Candidate {
     _id?: string;
     firstName: string;
@@ -5,7 +7,7 @@ export interface Candidate {
     email: string;
     phone: string;
     resumeLink: string;
-    appliedPosition: string;
+    jobPost: Job;
     experienceYears: number;
     status: 'Scheduled' | 'Interviewed' | 'Selected' | 'Rejected';
   }

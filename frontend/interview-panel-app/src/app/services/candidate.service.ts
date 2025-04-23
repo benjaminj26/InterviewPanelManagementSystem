@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Candidate } from '../models/candidate.model';
 import { Observable } from 'rxjs';
+import { Job } from '../models/job.model';
 
 @Injectable({ providedIn: 'root' })
 export class CandidateService {
@@ -27,5 +28,9 @@ export class CandidateService {
 
   deleteCandidate(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  getJobs(): Observable<Job[]> {
+    return this.http.get<Job[]>(`${this.apiUrl}/jobs`)
   }
 }
