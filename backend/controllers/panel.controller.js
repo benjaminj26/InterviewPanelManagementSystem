@@ -12,20 +12,44 @@ exports.createPanel = async (req, res) => {
 
 exports.getAllPanels = async (req, res) => {
   const panels = await Panel.find().populate('interviewers');
-  res.json(panels);
+  res.status(200).json(panels);
 };
 
 exports.getPanelById = async (req, res) => {
-  const panel = await Panel.findById(req.params.id).populate('interviewers');
-  res.json(panel);
+  try {
+    const panel = await Panel.findById(req.params.id).populate('interviewers');
+  
+    if (panel === null) {
+      res.status(404).json({ message: "Panel not found!" });
+    } else {
+      res.status(200).json(panel);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err.message });
+  }
 };
 
 exports.updatePanel = async (req, res) => {
-  const updated = await Panel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(updated);
+  try {
+    const updated = await Panel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    
+    res.status(200).json(updated);
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({ message: err.message });
+  }
 };
 
 exports.deletePanel = async (req, res) => {
-  await Panel.findByIdAndDelete(req.params.id);
-  res.json({ message: 'Panel deleted' });
+  try{
+    await Panel.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({ message: 'Panel deleted' });
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({ message: err.message });
+  }
 };

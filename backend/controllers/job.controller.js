@@ -1,4 +1,5 @@
 const Job = require('../models/Job');
+const Candidate = require('../models/candidate');
 
 exports.createJob = async (req, res) => {
     const { jobId, position, description, requirements } = req.body;
@@ -62,6 +63,7 @@ exports.deleteOneById = async (req, res) => {
         if (job === null) {
             res.status(200).json({ message: "Job does not exist" });
         } else {
+            await Candidate.deleteMany({jobId: null});
             res.status(200).json(job);
         }
     } catch (err) {
