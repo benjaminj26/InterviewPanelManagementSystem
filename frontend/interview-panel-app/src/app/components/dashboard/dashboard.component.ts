@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.http.get('http://localhost:5000/auth/protected').subscribe({
+    this.http.get('http://localhost:3000/auth/protected').subscribe({
       next: (res: any) => {
         this.userData = res;
         console.log(this.userData);

@@ -47,7 +47,10 @@ export class AuthService {
   private apiUrl = 'http://localhost:3000/auth';
 
   constructor(private http: HttpClient,private router: Router) {}
-
+  isLoggedIn(): boolean {
+    // Implement real logic here (e.g. check token existence or validity)
+    return !!localStorage.getItem('token');
+  }
   register(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, { email, password });
   }
