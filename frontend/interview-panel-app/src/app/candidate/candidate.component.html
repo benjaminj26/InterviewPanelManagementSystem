@@ -26,7 +26,7 @@
     <label for="jobPost">Select Job:</label>
     <select id="jobPost" formControlName="jobPost">
       <option *ngFor="let job of jobs" [value]="job._id">
-        {{ job.position }}
+        <div>{{ job.position }}</div>
       </option>
     </select>
   </div>
