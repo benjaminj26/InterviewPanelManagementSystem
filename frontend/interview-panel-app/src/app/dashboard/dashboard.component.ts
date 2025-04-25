@@ -6,6 +6,7 @@ import { InterviewPanelComponent } from '../interview-panel/interview-panel.comp
 import { InterviewScheduleComponent } from '../interview-schedule/interview-schedule.component';
 import { InterviewFeedbackComponent } from '../interview-feedback/interview-feedback.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { JobComponent } from '../job/job.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
     InterviewPanelComponent,
     InterviewScheduleComponent,
     InterviewFeedbackComponent,
+    JobComponent,
     RouterOutlet,
     RouterModule
   ],

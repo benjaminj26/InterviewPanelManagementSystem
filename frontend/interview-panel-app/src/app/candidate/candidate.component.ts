@@ -49,10 +49,10 @@ export class CandidateComponent implements OnInit {
 
   // Get all candidates from the backend
   getCandidates(): void {
-    this.interviewPanelApiService.getCandidates().subscribe(
-      (data: Candidate[]) => this.candidates = data,
-      (error) => console.error('Error fetching candidates:', error)
-    );
+    this.interviewPanelApiService.getCandidates().subscribe({
+      next: (data: Candidate[]) => this.candidates = data,
+      error: (error) => console.error('Error fetching candidates:', error)
+    });
   }
 
   // Submit the form to create or update a candidate

@@ -8,6 +8,7 @@ import { InterviewPanelComponent } from './interview-panel/interview-panel.compo
 import { InterviewScheduleComponent } from './interview-schedule/interview-schedule.component';
 import { InterviewFeedbackComponent } from './interview-feedback/interview-feedback.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { JobComponent } from './job/job.component';
 
 
 export const routes:  Routes = [
@@ -17,4 +18,5 @@ export const routes:  Routes = [
     { path: 'panels', component: InterviewPanelComponent },
     { path: 'schedules', component: InterviewScheduleComponent },
     { path: 'feedbacks', component: InterviewFeedbackComponent },
+    { path: 'jobs', component: JobComponent },
   ];

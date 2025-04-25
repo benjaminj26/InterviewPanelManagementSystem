@@ -1,0 +1,97 @@
+<form class="form-container" [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="jobId">Job ID</label>
+    <input
+      id="jobId"
+      type="text"
+      formControlName="jobId"
+      placeholder="Enter Job ID"
+      required
+    />
+    <div
+      *ngIf="jobForm.get('jobId')?.touched && jobForm.get('jobId')?.invalid"
+      class="text-danger"
+    >
+      Job ID is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="position">Position</label>
+    <input
+      id="position"
+      type="text"
+      formControlName="position"
+      placeholder="Enter Position"
+      required
+    />
+    <div
+      *ngIf="jobForm.get('position')?.touched && jobForm.get('position')?.invalid"
+      class="text-danger"
+    >
+      Position is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      rows="4"
+      formControlName="description"
+      placeholder="Enter Description"
+      required
+    ></textarea>
+    <div
+      *ngIf="jobForm.get('description')?.touched && jobForm.get('description')?.invalid"
+      class="text-danger"
+    >
+      Description is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="requirements">Requirements</label>
+    <input
+      id="requirements"
+      type="text"
+      formControlName="requirements"
+      placeholder="Enter comma-separated requirements"
+      required
+    />
+    <div
+      *ngIf="jobForm.get('requirements')?.touched && jobForm.get('requirements')?.invalid"
+      class="text-danger"
+    >
+      Requirements are required.
+    </div>
+  </div>
+
+  <div class="form-buttons">
+    <button class="submit-btn" type="submit" [disabled]="jobForm.invalid">
+      {{ editingId ? 'Update' : 'Create' }} Job
+    </button>
+    <button type="button" (click)="onCancel()">Cancel</button>
+  </div>
+</form>
+
+<!-- List of Jobs -->
+<ul class="item-list">
+  <li *ngFor="let job of jobs" class="item-entry">
+    <div class="candidate-info">
+      <div><strong>Job ID:</strong> {{ job.jobId }}</div>
+      <div><strong>Position:</strong> {{ job.position }}</div>
+      <div><strong>Description:</strong> {{ job.description }}</div>
+      <div>
+        <strong>Requirements:</strong>
+        <ul>
+          <li *ngFor="let req of job.requirements">{{ req }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="edit-btn" (click)="onEdit(job)">Edit</button>
+      <button class="delete-btn" (click)="onDelete(job.jobId)">Delete</button>
+    </div>
+  </li>
+</ul>

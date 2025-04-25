@@ -36,11 +36,6 @@
     <input id="resumeLink" formControlName="resumeLink" placeholder="Resume Link">
   </div>
 
-  <!-- <div class="form-group">
-    <label for="appliedPosition">Applied Position:</label>
-    <input id="appliedPosition" formControlName="appliedPosition" placeholder="Applied Position">
-  </div> -->
-
   <div class="form-group">
     <label for="experienceYears">Experience Years:</label>
     <input id="experienceYears" type="number" formControlName="experienceYears" placeholder="Experience Years">
@@ -55,7 +50,6 @@
       <option value="Rejected">Rejected</option>
     </select>
   </div>
-  
 
   <div class="form-buttons">
     <button type="submit" class="submit-btn">
@@ -69,10 +63,13 @@
 
 <ul class="item-list">
   <li *ngFor="let c of candidates" class="item-entry">
-    <span>{{ c.firstName }} {{ c.lastName }} - {{ c.email }} ({{ c.jobPost.position }})</span>
+    <span>{{ c.firstName }} {{ c.lastName }} - {{ c.email }} 
+      ({{ c.jobPost?.position }})
+    </span>
     <div class="actions">
       <button class="edit-btn" (click)="onEdit(c)">Edit</button>
       <button class="delete-btn" (click)="onDelete(c._id!)">Delete</button>
     </div>
   </li>
 </ul>
+

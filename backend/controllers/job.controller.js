@@ -1,14 +1,21 @@
 const Job = require('../models/Job');
 
 exports.createJob = async (req, res) => {
-    try {
-        const job = new Job(req.body);
-        const saved = await job.save();
-        res.status(201).json(saved);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
+    const { jobId, position, description, requirements } = req.body;
+  
+    if (!jobId || !position || !description || !Array.isArray(requirements)) {
+      return res.status(400).json({ message: "All fields are required and requirements must be an array" });
     }
-}
+  
+    try {
+      const job = new Job({ jobId, position, description, requirements });
+      await job.save();
+      res.status(201).json(job);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+  
 
 exports.getJobById = async (req, res) => {
     try {
