@@ -7,6 +7,11 @@ const Interviewer = require('../models/Interviewer');
 exports.createSchedule = async (req, res) => {
   try {
     const { candidate, panel, scheduledDate, startTime, endTime } = req.body;
+    console.log(candidate);
+    console.log(panel);
+    console.log(scheduledDate);
+    console.log(startTime);
+    console.log(endTime);
 
     // 🔍 Basic field validation
     if (!candidate || !panel || !scheduledDate || !startTime || !endTime) {
@@ -63,6 +68,7 @@ exports.createSchedule = async (req, res) => {
     res.status(201).json(savedSchedule);
 
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: 'Server error: ' + err.message });
   }
 };
@@ -123,11 +129,3 @@ exports.deleteSchedule = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
-
-exports.autoSchedule = async (req, res) => {
-  try {
-    
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-}

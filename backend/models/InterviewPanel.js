@@ -8,7 +8,7 @@ const interviewPanelSchema = new mongoose.Schema({
     job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' },
     interviewers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Interviewer' }],
     scheduledDateTime: Date
-  });
+});
   
-  module.exports = mongoose.model('InterviewPanel', interviewPanelSchema);
+module.exports = mongoose.model('InterviewPanel', interviewPanelSchema);
   
