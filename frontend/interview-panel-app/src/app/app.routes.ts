@@ -9,10 +9,16 @@ import { InterviewScheduleComponent } from './interview-schedule/interview-sched
 import { InterviewFeedbackComponent } from './interview-feedback/interview-feedback.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobComponent } from './job/job.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 export const routes:  Routes = [
-    { path: '', component: DashboardComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {path:'dashboard',component:DashboardComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+    // { path: '', component: DashboardComponent },
     { path: 'candidates', component: CandidateComponent },
     { path: 'interviewers', component: InterviewerComponent },
     { path: 'panels', component: InterviewPanelComponent },

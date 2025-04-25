@@ -7,12 +7,14 @@ const interviewerRoutes = require('./routes/interviewer.routes');
 const interviewScheduleRoutes = require('./routes/interviewSchedule.routes');
 const feedbackRoutes = require('./routes/interviewFeedback.routes');
 const jobRoutes = require('./routes/job.routes');
+require('dotenv').config(); 
 
 const app=express()
 
 app.use(cors());
 app.use(express.json());
 
+const authRoutes = require('./routes/auth.routes');
 
 app.use('/api/candidates', candidateRoutes);
 app.use('/api/panels', panelRoutes);
@@ -21,6 +23,7 @@ app.use('/api/schedules', interviewScheduleRoutes);
 app.use('/api/feedbacks', feedbackRoutes);
 app.use('/api/jobs', jobRoutes);
 
+app.use('/auth', authRoutes);
 
 app.get('/', (req, res) => {
     res.send('Server is running ✅');
