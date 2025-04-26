@@ -45,7 +45,7 @@
     <strong>Candidate:</strong> {{ getCandidateName(s.candidate) }} |
     <strong>Panel:</strong> {{ getPanelName(s.panel) }} |
     <strong>Date:</strong> {{ s.scheduledDate | date:'shortDate' }} |
-    <strong>Time:</strong> {{ getFormattedTime(s.startTime) }} - {{ getFormattedTime(s.endTime) }}
+    <strong>Time:</strong> {{ s.startTime }} - {{ s.endTime }}
 
     <div class="actions">
       <button class="edit-btn" (click)="onEdit(s)">Edit</button>

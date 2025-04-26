@@ -14,6 +14,7 @@ const feedbackRoutes = require('./routes/interviewFeedback.routes');
 const jobRoutes = require('./routes/job.routes');
 const authRoutes = require('./routes/auth.routes');
 const meetingRoutes = require('./routes/meeting.routes');
+require('dotenv').config(); 
 
 const app = express();
 
@@ -37,7 +38,6 @@ app.use('/api/feedbacks', feedbackRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/auth', authRoutes);
 app.use('/meeting', meetingRoutes);
-
 
 // Default root
 app.get('/', (req, res) => {
